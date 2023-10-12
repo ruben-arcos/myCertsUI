@@ -4,6 +4,7 @@ import cookie from "cookie";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import SignUp from "./components/SignUp";
+import CertificationHub from "./components/CertificationHub"
 
 
 const checkAuth = () => {
@@ -23,6 +24,7 @@ const checkAuth = () => {
                 <Route path='/' element={<Login />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/signup' element={<SignUp />} />
+                <Route path='/certificationhub' element={<CertificationHub />} />
           </Routes>
         );
   }

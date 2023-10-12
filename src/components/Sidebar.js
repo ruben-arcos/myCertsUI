@@ -1,6 +1,6 @@
-import { AppBar, Drawer, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
+import { AppBar, Drawer, Divider, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from "@mui/material"
 import { useTheme } from "@mui/material/styles";
-import AppsIcon from "@mui/icons-material/Apps";
+// import AppsIcon from "@mui/icons-material/Apps";
 
 const drawerWidth = 240;
 
@@ -10,7 +10,7 @@ const themedStyles = (theme) => {
       marginRight: 2
     },
     appBar: {
-      zIndex: theme.zIndex.drawer + 1
+      zIndex: theme.zIndex.drawer + 1 + 1000
     },
     drawer: {
       width: drawerWidth,
@@ -31,7 +31,7 @@ const themedStyles = (theme) => {
   }
 }
 
-export default function CustomZIndexAppBar() {
+const CustomZIndexAppBar = () => {
   const theme = useTheme();
 
   return (
@@ -77,31 +77,20 @@ export default function CustomZIndexAppBar() {
   )
 }
 
-// ************************
-// ************************
-// ************************
-// ************************
-// ************************
-// ************************
-// ************************
-// ************************
+export default CustomZIndexAppBar;
 
-// import React from "react";
 
-// export default function Sidebar() {
-//   return (
-//     <div
-//       style={{
-//         width: 500,
-//         backgroundColor: "red",
-//         height: "100%",
-//         maxWidth: "100vh",
-//         flex: 1,
-//         display: "flex",
-//         flexDirection: "column",
-//       }}
-//     >
-//       hello
-//     </div>
-//   );
-// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
