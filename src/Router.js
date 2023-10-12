@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router";
 import cookie from "cookie";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import SignUp from "./components/SignUp";
 
 
 const checkAuth = () => {
@@ -21,6 +22,7 @@ const checkAuth = () => {
           <Routes>
                 <Route path='/' element={<Login />} />
                 <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/signup' element={<SignUp />} />
           </Routes>
         );
   }
