@@ -1,4 +1,4 @@
-import { AppBar, Drawer, Divider, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from "@mui/material"
+import { Drawer, Divider, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material"
 import { useTheme } from "@mui/material/styles";
 // import AppsIcon from "@mui/icons-material/Apps";
 
@@ -36,11 +36,6 @@ const CustomZIndexAppBar = () => {
 
   return (
     <div>
-      <AppBar position="fixed" sx={{ ...themedStyles(theme).appBar }} style={{ backgroundColor: '#00599A' }}>
-        <Toolbar sx={{margin:'auto'}}>
-            <img src="/mycerts.svg" alt="logo" />
-        </Toolbar>
-      </AppBar>
       <Drawer
         disableEnforceFocus
         variant="temporary"
@@ -51,7 +46,6 @@ const CustomZIndexAppBar = () => {
           elevation: 9
         }}
       >
-        {/* <Toolbar /> */}
         <List sx={{ mt: "4rem" }}>
           {["Home", "Certification hub", "deleted images", "Email certs"].map((text, index) => (
             <ListItem key={text}>
@@ -69,7 +63,6 @@ const CustomZIndexAppBar = () => {
           {["Expiring soon"]}
         </List>
       </Drawer>
-      <Toolbar />
       <main style={{ ...themedStyles(theme).content}}>
         <Typography>Good morning, Ruben</Typography>
       </main>

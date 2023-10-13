@@ -1,8 +1,10 @@
-import "./App.css";
-import Router from "./Router";
-
-import Navigation from "./components/Navigation";
 import { useLocation } from "react-router-dom";
+
+import Router from "./Router";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+
+import "./App.css";
 
 function App() {
   const location = useLocation();
@@ -16,6 +18,7 @@ function App() {
       )}
       {/* {location.pathname !== "/signup"  && <Navigation />} */}
       <Router />
+      {location.pathname === "/dashboard" ? null : <Footer /> }
     </div>
   );
 }
