@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useNavigate } from "react-router";
 // import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -59,16 +59,45 @@ const SignUp = (props) => {
         fullName: data.get("firstName"),
         lastName: data.get("lastName"),
       }),
-    })
-   const result = await res.json()
-       console.log(result, "this is the response now");
-    navigate("/dashboard")
+    });
+    const result = await res.json();
+    console.log(result, "this is the response now");
+    navigate("/dashboard");
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: 10,
+        }}
+      >
+        {/* <img
+          src="../mycertslogin.svg"
+          alt="logo"
+          style={{ position: "absolute", top: 80 }}
+        /> */}
+      </Box>
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{ backgroundColor: "#fff" }}
+      >
         <CssBaseline />
+        <div
+          style={{
+            backgroundColor: "#CCEEEE",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            zIndex: -1, // Ensure this is behind other content
+          }}
+        />
         <Box
           sx={{
             marginTop: 8,
