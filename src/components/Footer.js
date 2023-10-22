@@ -10,9 +10,9 @@ const themedStyles = (theme) => {
       textAlign: "center",
       position: "fixed",
       bottom: 0,
-      width: "100%",
+      width: 240,
       // Ensure the footer appears above other content
-      zIndex: 1000,
+      // zIndex: 10000,
     },
   };
 };

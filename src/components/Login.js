@@ -39,13 +39,13 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+const URL = "https://my-certs-backend.vercel.app/users/login";
+
 const Login = (props) => {
   const navigate = useNavigate();
 
-  console.log(props, "login component props");
-
   const [state, setState] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -59,17 +59,31 @@ const Login = (props) => {
     });
   };
 
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
 
+    console.log(state);
     // check db and verify uname and pwd hash
     // if true, generate the siged token
     // set cookie here only if I have signed on
     // set loggedIn = true and max-age = 60*1000 (one minute)
 
-    document.cookie = "loggedIn=true;max-age=60*1000";
+    // making request to server
+    const response = await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(state), // body data type must match "Content-Type"
+    });
 
-    navigate("/dashboard");
+    console.log(response);
+    const results = await response.json();
+    console.log(results);
+
+    // document.cookie = "loggedIn=true;max-age=60*1000";
+
+    // navigate("/dashboard");
   };
 
   return (
@@ -120,13 +134,13 @@ const Login = (props) => {
             }}
           
           > */}
-            <img
-              src="../mycertslogin.svg"
-              alt="logo"
-              style={{ margin: "30px 0 10px 0", width: '140px'}}
-            />
+          <img
+            src="../mycertslogin.svg"
+            alt="logo"
+            style={{ margin: "30px 0 10px 0", width: "140px" }}
+          />
           {/* </Box> */}
-          
+
           <Typography
             component="h1"
             variant="h5"
@@ -143,8 +157,8 @@ const Login = (props) => {
               margin="normal"
               required
               onChange={handleTextChange}
-              value={state.username}
-              name="username"
+              value={state.email}
+              name="email"
               fullWidth
               autoFocus
               autoComplete="email"
@@ -167,15 +181,17 @@ const Login = (props) => {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Box sx={{
-              display: "flex",
-              justifyContent: 'flex-end',
-            }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
               <Button
                 type="submit"
                 size="medium"
                 variant="contained"
-                sx={{ mt: 3, mb: 2}}
+                sx={{ mt: 3, mb: 2 }}
               >
                 Sign In
               </Button>

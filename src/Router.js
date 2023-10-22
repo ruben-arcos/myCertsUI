@@ -22,7 +22,7 @@ const checkAuth = () => {
       return (
           <Routes>
                 {/* <Route path='/' element={<Login />} /> */}
-                <Route path='/' element={<Login />} />
+                <Route path='/login' element={<Login />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/signup' element={<SignUp />} />
                 <Route path='/certificationhub' element={<CertificationHub />} />

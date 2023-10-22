@@ -12,13 +12,13 @@ function App() {
   console.log(location.pathname === "/signup", "pathname");
   return (
     <div className="App">
-      {location.pathname === "/" ? null : location.pathname ===
+      {/* {location.pathname === "/" ? null : location.pathname ===
         "/signup" ? null : (
         <Navigation />
-      )}
+      )} */}
       {/* {location.pathname !== "/signup"  && <Navigation />} */}
       <Router />
-      {location.pathname === "/dashboard" ? null : <Footer /> }
+      {/* {location.pathname === "/dashboard" ? null : <Footer /> } */}
     </div>
   );
 }
