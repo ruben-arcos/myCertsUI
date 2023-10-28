@@ -31,7 +31,7 @@ function ResponsiveDrawer({ children, ...props }) {
       <Divider />
       <List>
         {[
-          { name: "Home", to: "/" },
+          { name: "Home", to: "/dashboard" },
           { name: "Certification hub", to: "/certificationhub" },
           { name: "deleted images", to: "/deleted" },
           { name: "Email certs", to: "/emailcerts" },
@@ -67,7 +67,7 @@ function ResponsiveDrawer({ children, ...props }) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", height: "100%" }}>
       <CssBaseline />
       <AppBar
         position="fixed"

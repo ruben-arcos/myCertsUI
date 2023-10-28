@@ -1,11 +1,92 @@
-import React from "react";
-import { Box, Toolbar, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import cookie from "cookie";
+import {
+  Box,
+  Button,
+  Divider,
+  Modal,
+  TextField,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 
-import Sidebar from './Sidebar'
+import Sidebar from "./Sidebar";
+import { useNavigate } from "react-router";
 
 const drawerWidth = 240;
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 export default function Dashboard() {
+  const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const [body, setBody] = useState({});
+  const [imageFile, setImageFile] = useState();
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("handle submit");
+    const data = new FormData();
+    data.append("image", imageFile);
+    data.append("certification_name", body.certification_name);
+    data.append("expiration_date", body.expiration_date);
+    data.append("place_of_certification", body.place_of_certification);
+    console.log(data);
+    const cookies = cookie.parse(document.cookie);
+    console.log(cookies);
+
+    fetch("https://my-certs-backend.vercel.app/certificates/post-certificate", {
+      method: "POST",
+      body: data,
+      headers: {
+        // "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + cookies.token,
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+    navigate("/certificationhub");
+  };
+
+  const handleImageChange = (event) => {
+    const files = event.target.files;
+
+    if (files && files.length > 0) {
+      setImageFile(files[0]);
+    }
+    handleOpen();
+  };
+
+  const handleTextChange = (e) => {
+    const { name, value } = e.target;
+    setBody((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
+
+  useEffect(() => {
+    console.log(imageFile);
+  }, [imageFile]);
+
   return (
     <Sidebar>
       <Box
@@ -17,36 +98,77 @@ export default function Dashboard() {
         }}
       >
         <Toolbar />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "80%",
+            justifyContent: "space-evenly",
+          }}
+          component="form"
+          onSubmit={handleSubmit}
+        >
+          <Box>
+            <TextField type="file" id="image" onChange={handleImageChange} />
+          </Box>
+          <Divider></Divider>
+          <Box>
+            <h2>drop image here</h2>
+          </Box>
+        </Box>
       </Box>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style} component="form" onSubmit={handleSubmit}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Please provide some information about your certificate below
+          </Typography>
+          <TextField
+            id="certification_name"
+            name="certification_name"
+            label="name of certification"
+            variant="standard"
+            margin="normal"
+            fullWidth
+            autoFocus
+            onChange={handleTextChange}
+          />
+          <TextField
+            id="expiration_date"
+            name="expiration_date"
+            label="expiration date"
+            variant="standard"
+            margin="normal"
+            type="date"
+            InputLabelProps={{ shrink: true }}
+            fullWidth
+            autoFocus
+            onChange={handleTextChange}
+          />
+          <TextField
+            id="place_of_certification"
+            name="place_of_certification"
+            label="place where you got certified"
+            variant="standard"
+            margin="normal"
+            fullWidth
+            autoFocus
+            onChange={handleTextChange}
+          />
+          <Button
+            type="submit"
+            size="medium"
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Submit
+          </Button>
+        </Box>
+      </Modal>
     </Sidebar>
   );
 }

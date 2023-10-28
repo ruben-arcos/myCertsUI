@@ -16,24 +16,23 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-
-      {/* <Link color="inherit" href="/">
-        <img src='/my-certs/public/mycerts.svg' alt="logo" />
-      </Link>{' '} */}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography
+//       variant="body2"
+//       color="text.secondary"
+//       align="center"
+//       {...props}
+//     >
+//       {"Copyright © "}
+//       <Link color="inherit" href="/">
+//         <img src="/my-certs/public/mycerts.svg" alt="logo" />
+//       </Link>{" "}
+//       {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -84,8 +83,6 @@ const Login = (props) => {
     document.cookie = "loggedIn=true;max-age=60*1000";
     document.cookie = `token=${results.token};max-age=60*1000`;
 
-    
-
     navigate("/dashboard");
   };
 
@@ -114,12 +111,12 @@ const Login = (props) => {
         <CssBaseline />
         <div
           style={{
-            backgroundColor: "#CCEEEE",
-            position: "fixed",
+            backgroundImage: 'linear-gradient(174.2deg, rgba(255, 244, 228, 1) 7.1%, rgba(240, 246, 238, 1) 67.4%)',
+            position: 'fixed',
             top: 0,
             left: 0,
-            width: "100%",
-            height: "100vh",
+            width: '100%',
+            height: '100vh',
             zIndex: -1, // Ensure this is behind other content
           }}
         />
@@ -131,12 +128,6 @@ const Login = (props) => {
             alignItems: "flex-start",
           }}
         >
-          {/* <Box 
-            sx={{
-
-            }}
-          
-          > */}
           <img
             src="../mycertslogin.svg"
             alt="logo"
@@ -214,7 +205,7 @@ const Login = (props) => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );
