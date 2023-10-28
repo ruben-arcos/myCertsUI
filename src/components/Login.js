@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import cookie from "cookie";
 
 import { useNavigate } from "react-router";
 import { useState } from "react";
@@ -81,7 +82,11 @@ const Login = (props) => {
     console.log(results);
 
     document.cookie = "loggedIn=true;max-age=60*1000";
-    document.cookie = `token=${results.token};max-age=60*1000`;
+    // document.cookie = `token=${results.token};max-age=60*1000`;
+    document.cookie = cookie.serialize("token", results.token, {
+      maxAge: 60 * 60 * 24 * 7,
+      secure: false,
+    });
 
     navigate("/dashboard");
   };
@@ -111,12 +116,13 @@ const Login = (props) => {
         <CssBaseline />
         <div
           style={{
-            backgroundImage: 'linear-gradient(174.2deg, rgba(255, 244, 228, 1) 7.1%, rgba(240, 246, 238, 1) 67.4%)',
-            position: 'fixed',
+            backgroundImage:
+              "linear-gradient(174.2deg, rgba(255, 244, 228, 1) 7.1%, rgba(240, 246, 238, 1) 67.4%)",
+            position: "fixed",
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100vh',
+            width: "100%",
+            height: "100vh",
             zIndex: -1, // Ensure this is behind other content
           }}
         />
