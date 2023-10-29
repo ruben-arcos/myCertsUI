@@ -18,7 +18,6 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import Footer from "./Footer";
 
-
 // function Copyright(props) {
 //   return (
 //     <Typography
@@ -50,6 +49,7 @@ const Login = (props) => {
     email: "",
     password: "",
   });
+  const [error, setError] = useState(null);
 
   const handleTextChange = (e) => {
     const { name, value } = e.target;
@@ -78,18 +78,22 @@ const Login = (props) => {
       },
       body: JSON.stringify(state), // body data type must match "Content-Type"
     });
+    const results = await response.json();
 
     console.log(response);
-    const results = await response.json();
     console.log(results);
 
-    document.cookie = "loggedIn=true;max-age=60*1000";
-    // document.cookie = `token=${results.token};max-age=60*1000`;
-    document.cookie = cookie.serialize("token", results.token, {
-      maxAge: 60 * 60 * 24 * 7,
-      secure: false,
-    });
-
+    if (!response.ok) {
+      setError(results.msg);
+      return;
+    } else {
+      document.cookie = "loggedIn=true;max-age=60*1000";
+      // document.cookie = `token=${results.token};max-age=60*1000`;
+      document.cookie = cookie.serialize("token", results.token, {
+        maxAge: 60 * 60 * 24 * 7,
+        secure: false,
+      });
+    }
     navigate("/dashboard");
   };
 
@@ -103,18 +107,7 @@ const Login = (props) => {
           marginTop: 10,
         }}
       >
-        {/* <img
-          src="../mycertslogin.svg"
-          alt="logo"
-          style={{ position: "absolute", top: 80 }}
-        /> */}
       </Box>
-
-      <Container
-        component="main"
-        maxWidth="xs"
-        sx={{ backgroundColor: "#fff" }}
-      >
         <CssBaseline />
         <div
           style={{
@@ -128,9 +121,14 @@ const Login = (props) => {
             zIndex: -1, // Ensure this is behind other content
           }}
         />
+         <Container
+        component="main"
+        maxWidth="xs"
+        sx={{ backgroundColor: "#fff",  boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)' }}
+      >
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 15,
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
@@ -183,6 +181,7 @@ const Login = (props) => {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <Box
               sx={{
                 display: "flex",
@@ -215,9 +214,7 @@ const Login = (props) => {
         </Box>
         {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
-      <Footer
-        fullWidth ={true}
-      />
+      <Footer fullWidth={true} />
     </ThemeProvider>
   );
 };

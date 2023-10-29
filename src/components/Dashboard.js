@@ -27,7 +27,7 @@ const style = {
   p: 4,
 };
 
-export default function Dashboard() {
+export default function Dashboard({user}) {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [body, setBody] = useState({});
@@ -98,6 +98,9 @@ export default function Dashboard() {
         }}
       >
         <Toolbar />
+        <Typography>
+          <p>{user && "Welcome, " + user.firstName[0].toUpperCase() + user.firstName.slice(1)}</p>
+        </Typography>
         <Box
           sx={{
             display: "flex",

@@ -13,7 +13,8 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Footer from "./Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import cookie from "cookie";
 
 import Button from "@mui/material/Button";
 
@@ -22,6 +23,7 @@ const drawerWidth = 240;
 function ResponsiveDrawer({ children, ...props }) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -89,7 +91,17 @@ function ResponsiveDrawer({ children, ...props }) {
             <MenuIcon />
           </IconButton>
           <img src="/mycerts.svg" alt="logo" />
-          <Button color="inherit">Login</Button>
+          <Button
+            color="inherit"
+            onClick={() => {
+              document.cookie = cookie.serialize("token", null, {
+                maxAge: 0,
+              });
+              navigate("/login");
+            }}
+          >
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
       <Box
@@ -144,160 +156,3 @@ ResponsiveDrawer.propTypes = {
 };
 
 export default ResponsiveDrawer;
-
-// import React from "react";
-// import Sidebar from "./Sidebar";
-// import { Button, Divider, Typography } from "@mui/material";
-// import { useTheme } from "@mui/material/styles";
-// import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-// import { styled } from "@mui/material/styles";
-
-// const drawerWidth = 240;
-
-// const VisuallyHiddenInput = styled("input")({
-//   clip: "rect(0 0 0 0)",
-//   clipPath: "inset(50%)",
-//   height: 1,
-//   overflow: "hidden",
-//   position: "absolute",
-//   bottom: 0,
-//   left: 0,
-//   whiteSpace: "nowrap",
-//   width: 1,
-// });
-
-// const themedStyles = (theme) => {
-//   return {
-//     content: {
-//       // padding: 3,
-//       maxWidth: 720,
-//       minWidth: "100%",
-//       marginLeft: drawerWidth,
-//       display: "flex",
-//       flexDirection: "column",
-//       justifyContent: "space-evenly",
-//       minHeight: "100%",
-//     },
-//     divider: {
-//       // position: 'absolute',
-//       // top: '50%',
-//       // transform: 'translateY(-50%)',
-//       // width: '100%',
-//     },
-
-//     buttonSection: {
-//       textAlign: "center",
-//       marginTop: "20px",
-//       padding: "10px",
-//       alignSelf: "center",
-//     },
-//   };
-// };
-
-// export default function Dashboard() {
-//   const theme = useTheme();
-//   return (
-//     <div style={{ display: "flex", width: "100%" }}>
-//       <Sidebar>
-//         <main style={themedStyles(theme).content}>
-//           <div style={{ flex: 1 }}>
-//             <Typography>Good morning, Ruben</Typography>
-//             <Button
-//               component="label"
-//               variant="contained"
-//               startIcon={<CloudUploadIcon />}
-//               sx={{ alignSelf: "flex-start" }}
-//             >
-//               Upload file
-//               <VisuallyHiddenInput type="file" />
-//             </Button>
-//           </div>
-//           <Divider style={themedStyles(theme).divider} />{" "}
-//           {/* Add a centered divider */}
-//           <div style={{ flex: 1 }}>
-//             <p>drag item here</p>
-//           </div>
-//         </main>
-//       </Sidebar>
-//     </div>
-//   );
-// }
-
-// import {
-//   Drawer,
-//   Divider,
-//   List,
-//   ListItem,
-//   ListItemButton,
-//   ListItemText,
-// } from "@mui/material";
-// import { useTheme } from "@mui/material/styles";
-
-// // import AppsIcon from "@mui/icons-material/Apps";
-
-// const drawerWidth = 240;
-
-// const themedStyles = (theme) => {
-//   return {
-//     drawer: {
-//       width: drawerWidth,
-//       "& .MuiBackdrop-root": {
-//         display: "none",
-//       },
-//     },
-//     drawerPaper: {
-//       width: drawerWidth,
-//       backgroundColor: "rgba(120,120,120,0.2)",
-//     },
-
-//     additionalSection: {
-//       marginTop: "20px",
-//       padding: "10px",
-//       textAlign: "center",
-//     },
-//   };
-// };
-
-// const CustomZIndexAppBar = ({ children }) => {
-//   const theme = useTheme();
-
-//   return (
-//     <div style={{ width: "100%", height:'100vh' }}>
-//       <Drawer
-//         disableEnforceFocus
-//         variant="temporary"
-//         open={true}
-//         sx={themedStyles(theme).drawer}
-//         PaperProps={{
-//           sx: themedStyles(theme).drawerPaper,
-//           elevation: 9,
-//         }}
-//       >
-//         <List sx={{ mt: "4rem" }}>
-//           {["Home", "Certification hub", "deleted images", "Email certs"].map(
-//             (text, index) => (
-//               <ListItem key={text}>
-//                 <ListItemButton>
-//                   {/* <ListItemIcon>
-//                   <AppsIcon />
-//                 </ListItemIcon> */}
-//                   <ListItemText primary={text} />
-//                 </ListItemButton>
-//               </ListItem>
-//             )
-//           )}
-//         </List>
-//         <Divider />
-//         <List sx={{ mt: "2rem", textAlign: "center" }}>
-//           {["Expiring soon"]}
-//         </List>
-//       </Drawer>
-//       {children}
-//       <div style={themedStyles(theme).additionalSection}>
-//         {/* Your additional section content goes here */}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CustomZIndexAppBar;

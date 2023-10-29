@@ -28,7 +28,7 @@ export default function Footer({ fullWidth }) {
       }}
     >
       <Typography variant="body2" color="textSecondary">
-        &copy; {new Date().getFullYear()} Your Company Name
+        &copy; {new Date().getFullYear()} myCerts
       </Typography>
     </div>
   );
