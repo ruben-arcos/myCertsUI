@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import SignUp from "./components/SignUp";
 import CertificationHub from "./components/CertificationHub"
+import LandingPage from "./components/LandingPage";
 
 
 const checkAuth = () => {
@@ -21,7 +22,7 @@ const checkAuth = () => {
   const Router = () => {
       return (
           <Routes>
-                {/* <Route path='/' element={<Login />} /> */}
+                <Route path='/' element={<LandingPage />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/signup' element={<SignUp />} />

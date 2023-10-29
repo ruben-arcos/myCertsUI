@@ -15,6 +15,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 
+import Button from "@mui/material/Button";
+
 const drawerWidth = 240;
 
 function ResponsiveDrawer({ children, ...props }) {
@@ -87,6 +89,7 @@ function ResponsiveDrawer({ children, ...props }) {
             <MenuIcon />
           </IconButton>
           <img src="/mycerts.svg" alt="logo" />
+          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
       <Box

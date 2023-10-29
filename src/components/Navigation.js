@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 const themedStyles = (theme) => {
   return {
@@ -23,7 +24,7 @@ export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
-       position="sticky"
+        position="sticky"
         sx={{
           ...themedStyles(theme).appBar,
           zIndex: "1000000 !important",
@@ -46,7 +47,9 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <img src="/mycerts.svg" alt="logo" />
-          <Button color="inherit">Login</Button>
+          <Button component={Link} to="/login" color="inherit">
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

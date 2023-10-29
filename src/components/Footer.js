@@ -17,10 +17,16 @@ const themedStyles = (theme) => {
   };
 };
 
-export default function Footer() {
+export default function Footer({ fullWidth }) {
   const theme = useTheme();
   return (
-    <div style={{ ...themedStyles(theme).footer, backgroundColor: "#888888" }}>
+    <div
+      style={{
+        ...themedStyles(theme).footer,
+        backgroundColor: "#888888",
+        width: fullWidth ? "100%" : 240,
+      }}
+    >
       <Typography variant="body2" color="textSecondary">
         &copy; {new Date().getFullYear()} Your Company Name
       </Typography>

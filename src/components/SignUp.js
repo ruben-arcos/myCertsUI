@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
+import Footer from "./Footer";
 
 const URL = "https://my-certs-backend.vercel.app/users/sign-up";
 
@@ -195,6 +196,9 @@ const SignUp = (props) => {
           </Box>
         </Box>
       </Container>
+      <Footer
+         fullWidth ={true}
+      />
     </ThemeProvider>
   );
 };

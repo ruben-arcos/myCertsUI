@@ -16,6 +16,8 @@ import cookie from "cookie";
 
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import Footer from "./Footer";
+
 
 // function Copyright(props) {
 //   return (
@@ -213,6 +215,9 @@ const Login = (props) => {
         </Box>
         {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
+      <Footer
+        fullWidth ={true}
+      />
     </ThemeProvider>
   );
 };
