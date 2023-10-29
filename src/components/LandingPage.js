@@ -40,17 +40,19 @@ export default function ResponsiveAppBar() {
   };
 
   return (
-    <div style={{height: '100vh', margin: 0, padding: 0, background: 'black' }}>
+    <div
+      style={{ height: "100vh", margin: 0, padding: 0, background: "black" }}
+    >
       {/* <Navigation /> */}
       {/* <Sidebar> */}
       {/* </Sidebar> */}
 
       <AppBar
         position="static"
-        sx={{ 
-            background: "white", 
-            // boxShadow: "none", 
-            // borderBottom: "none" 
+        sx={{
+          background: "rgba(22, 22, 23, .8)",
+          // boxShadow: "none",
+          // borderBottom: "none"
         }}
       >
         <Container maxWidth="xl">
@@ -72,7 +74,7 @@ export default function ResponsiveAppBar() {
               }}
             ></Typography>
             <img
-              src="/mycertsGrayLogo.svg"
+              src="/mycerts.svg"
               alt="logo"
               style={{ marginLeft: "-90px", marginTop: "15px" }}
             />
@@ -142,7 +144,8 @@ export default function ResponsiveAppBar() {
                   <Button
                     key={page}
                     onClick={handleCloseNavMenu}
-                    sx={{ color: "gray" }}
+                    sx={{ color: "white", textTransform: "none" 
+                }}
                   >
                     {page}
                   </Button>
@@ -180,7 +183,12 @@ export default function ResponsiveAppBar() {
       </AppBar>
 
       <div>
-        <h1 style={{ color: '#fff' }}>landing page</h1>
+        <div style={{ textAlign: "center" }}>
+          <p style={{ color: "#fff", fontWeight: "bold", fontSize: "24px" }}>
+            Found that perfect job and want to apply right away? <br />
+            Securely store your certifications, licenses or resume on mycerts{" "}
+          </p>
+        </div>
       </div>
 
       <Footer fullWidth />
