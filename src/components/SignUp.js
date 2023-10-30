@@ -1,6 +1,5 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
-// import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -13,8 +12,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useState } from "react";
 import Footer from "./Footer";
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 const URL = "https://my-certs-backend.vercel.app/users/sign-up";
 
@@ -24,6 +23,8 @@ const SignUp = (props) => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState(null)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -50,7 +51,11 @@ const SignUp = (props) => {
     });
     const result = await res.json();
     console.log(result, "this is the response now");
-    navigate("/login");
+    if(!res.ok) {
+      setError(result.msg)
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -141,7 +146,9 @@ const SignUp = (props) => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <TextField 
+                value={password} 
+                onChange={e => setPassword(e.target.value)}
                   variant="standard"
                   required
                   fullWidth
@@ -152,6 +159,13 @@ const SignUp = (props) => {
                   autoComplete="new-password"
                 />
               </Grid>
+              {/* password strength bar starts here,
+              must be on Grid to move to R side */}
+              <Grid item xs={12} sx={{ mt: -2, mb: 2 }}>
+              <PasswordStrengthBar password={password} />
+              </Grid>
+              
+              {error && <p style={{color: 'red'}}>{error}</p>}
               <Grid item xs={12}>
                 <FormControlLabel
                   control={

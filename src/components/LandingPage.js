@@ -1,24 +1,31 @@
-// import React from "react";
-// import Navigation from "./Navigation";
-// import Sidebar from "./Sidebar";
-
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import {
+  AppBar,
+  // Avatar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-// import Avatar from '@mui/material/Avatar';
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
+import { Fade } from "react-reveal";
 
-const pages = ["Contact", "Pricing", "Sign up", "Login"];
+const pages = [
+  { name: "Contact", to: "/#" },
+  { name: "Pricing", to: "/#" },
+  { name: "Sign up", to: "/signup" },
+  { name: "Login", to: "/login" },
+];
 
 export default function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -43,10 +50,6 @@ export default function ResponsiveAppBar() {
     <div
       style={{ height: "100vh", margin: 0, padding: 0, background: "black" }}
     >
-      {/* <Navigation /> */}
-      {/* <Sidebar> */}
-      {/* </Sidebar> */}
-
       <AppBar
         position="static"
         sx={{
@@ -114,7 +117,7 @@ export default function ResponsiveAppBar() {
               >
                 {pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                    <Typography textAlign="center">{page.name}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -144,10 +147,11 @@ export default function ResponsiveAppBar() {
                   <Button
                     key={page}
                     onClick={handleCloseNavMenu}
-                    sx={{ color: "white", textTransform: "none" 
-                }}
+                    sx={{ color: "white", textTransform: "none" }}
+                    component={Link}
+                    to={page.to}
                   >
-                    {page}
+                    {page.name}
                   </Button>
                 ))}
               </Box>{" "}
@@ -182,14 +186,51 @@ export default function ResponsiveAppBar() {
         </Container>
       </AppBar>
 
-      <div>
-        <div style={{ textAlign: "center" }}>
-          <p style={{ color: "#fff", fontWeight: "bold", fontSize: "24px" }}>
-            Found that perfect job and want to apply right away? <br />
-            Securely store your certifications, licenses or resume on mycerts{" "}
-          </p>
-        </div>
-      </div>
+      {/* content starts here */}
+
+      <Box className="mainLandingPageContainer">
+        <Fade top distance="20%" duration="1500">
+          <div className="mainTitle" style={{ textAlign: "center" }}>
+            <p
+              style={{
+                color: "#fff",
+                fontWeight: "bold",
+                fontSize: "24px",
+              }}
+            >
+              Found that perfect job and want to apply right away? <br />
+              Securely store your certifications, licenses or resume on mycerts{" "}
+            </p>
+            <span
+              style={{
+                color: "#fff",
+              }}
+            >
+              with mycerts you get a valuable tool, so you won’t have to be
+              searching in your old emails, or your photo library. we did our
+              homework for you and happy to help you create, share, and, print
+              the documents you need
+            </span>
+
+            <Fade top duration="1000">
+              <Button
+                component={Link}
+                to="/signup"
+                size="large"
+                variant="outlined"
+                sx={{
+                  "&:hover": { background: "#3366A9" },
+                  background: "#00599A",
+                  color: "black",
+                  marginTop: '20px'
+                }}
+              >
+                GET STARTED NOW <ArrowForwardIcon />
+              </Button>
+            </Fade>
+          </div>
+        </Fade>
+      </Box>
 
       <Footer fullWidth />
     </div>

@@ -42,7 +42,7 @@ const defaultTheme = createTheme();
 
 const URL = "https://my-certs-backend.vercel.app/users/login";
 
-const Login = (props) => {
+const Login = ({setUser}) => {
   const navigate = useNavigate();
 
   const [state, setState] = useState({
@@ -50,9 +50,11 @@ const Login = (props) => {
     password: "",
   });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleTextChange = (e) => {
     const { name, value } = e.target;
+    setError(null);
     setState((prevState) => {
       return {
         ...prevState,
@@ -63,7 +65,7 @@ const Login = (props) => {
 
   const login = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     console.log(state);
     // check db and verify uname and pwd hash
     // if true, generate the siged token
@@ -85,6 +87,7 @@ const Login = (props) => {
 
     if (!response.ok) {
       setError(results.msg);
+      setLoading(false);
       return;
     } else {
       document.cookie = "loggedIn=true;max-age=60*1000";
@@ -93,6 +96,8 @@ const Login = (props) => {
         maxAge: 60 * 60 * 24 * 7,
         secure: false,
       });
+      setUser(results.user)
+      setLoading(false);
     }
     navigate("/dashboard");
   };
@@ -106,25 +111,27 @@ const Login = (props) => {
           justifyContent: "center",
           marginTop: 10,
         }}
-      >
-      </Box>
-        <CssBaseline />
-        <div
-          style={{
-            backgroundImage:
-              "linear-gradient(174.2deg, rgba(255, 244, 228, 1) 7.1%, rgba(240, 246, 238, 1) 67.4%)",
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100vh",
-            zIndex: -1, // Ensure this is behind other content
-          }}
-        />
-         <Container
+      ></Box>
+      <CssBaseline />
+      <div
+        style={{
+          backgroundImage:
+            "linear-gradient(174.2deg, rgba(255, 244, 228, 1) 7.1%, rgba(240, 246, 238, 1) 67.4%)",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100vh",
+          zIndex: -1, // Ensure this is behind other content
+        }}
+      />
+      <Container
         component="main"
         maxWidth="xs"
-        sx={{ backgroundColor: "#fff",  boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)' }}
+        sx={{
+          backgroundColor: "#fff",
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+        }}
       >
         <Box
           sx={{
@@ -135,7 +142,7 @@ const Login = (props) => {
           }}
         >
           <img
-            src="../mycertslogin.svg"
+            src="../mycertsGrayLogo.svg"
             alt="logo"
             style={{ margin: "30px 0 10px 0", width: "140px" }}
           />
@@ -194,7 +201,7 @@ const Login = (props) => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                {loading ? "Loadinig" : "Sign In"}
               </Button>
             </Box>
 

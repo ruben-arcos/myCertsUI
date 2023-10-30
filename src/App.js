@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router user={user} />
+      <Router user={user} setUser={setUser} />
     </div>
   );
 }
