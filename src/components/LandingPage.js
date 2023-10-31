@@ -18,7 +18,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
-import { Fade } from "react-reveal";
+import { Fade, Zoom } from "react-reveal";
 
 const pages = [
   { name: "Contact", to: "/#" },
@@ -58,7 +58,7 @@ export default function ResponsiveAppBar() {
           // borderBottom: "none"
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth="xl" sx={{ maxWidth: "100% !important" }}>
           <Toolbar disableGutters>
             <Typography
               variant="h6"
@@ -76,11 +76,7 @@ export default function ResponsiveAppBar() {
                 textDecoration: "none",
               }}
             ></Typography>
-            <img
-              src="/mycerts.svg"
-              alt="logo"
-              style={{ marginLeft: "-90px", marginTop: "15px" }}
-            />
+            <img src="/mycerts.svg" alt="logo" style={{ marginTop: "15px" }} />
             <Box
               sx={{
                 flexGrow: 1,
@@ -206,13 +202,13 @@ export default function ResponsiveAppBar() {
                 color: "#fff",
               }}
             >
-              with mycerts you get a valuable tool, so you won’t have to be
-              searching in your old emails, or your photo library. we did our
-              homework for you and happy to help you create, share, and, print
-              the documents you need
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
             </span>
 
-            <Fade top duration="1000">
+            <Zoom top duration="1000">
               <Button
                 component={Link}
                 to="/signup"
@@ -222,12 +218,12 @@ export default function ResponsiveAppBar() {
                   "&:hover": { background: "#3366A9" },
                   background: "#00599A",
                   color: "black",
-                  marginTop: '20px'
+                  marginTop: "20px",
                 }}
               >
                 GET STARTED NOW <ArrowForwardIcon />
               </Button>
-            </Fade>
+            </Zoom>
           </div>
         </Fade>
       </Box>
