@@ -25,7 +25,7 @@ function App() {
           setUser(data)
           console.log(data, "user data");
         }); 
-      navigate("/dashboard");
+      // navigate("/dashboard");
     }
   }, []);
 
