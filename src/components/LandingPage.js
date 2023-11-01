@@ -16,9 +16,12 @@ import {
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
-import { Fade, Zoom } from "react-reveal";
+import { Fade } from "react-reveal";
 
 const pages = [
   { name: "Contact", to: "/#" },
@@ -26,6 +29,44 @@ const pages = [
   { name: "Sign up", to: "/signup" },
   { name: "Login", to: "/login" },
 ];
+
+
+class DemoCarousel extends React.Component {
+  render() {
+    const imgStyle = {
+      width: "700px",
+      height: "auto",
+      margin: 20, 
+    };
+
+    const customStatusFormatter = (current, total) => null;
+
+    return (
+      <Carousel showThumbs={false} statusFormatter={customStatusFormatter} autoPlay={true} interval={3000} infiniteLoop={true}>
+        <div>
+          <img src="./resources/easyStorage.png" alt="Image 1" style={imgStyle} />
+          <p className="legend">Easy to store</p>
+        </div>
+        <div>
+          <img src="./resources/mobileSafe.png" alt="Image 2" style={imgStyle} />
+          <p className="legend">Safe</p>
+        </div>
+        <div>
+          <img src="./resources/availableEverywhere.png" alt="Image 3" style={imgStyle} />
+          <p className="legend">Your documents are available everywhere</p>
+        </div>
+      </Carousel>
+    );
+  }
+}
+
+
+
+
+
+
+
+
 
 export default function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -208,25 +249,44 @@ export default function ResponsiveAppBar() {
               nisi ut aliquip ex ea commodo consequat.
             </span>
 
-            <Zoom top duration="1000">
+            <Fade top duration="1000">
               <Button
                 component={Link}
                 to="/signup"
                 size="large"
                 variant="outlined"
                 sx={{
-                  "&:hover": { background: "#3366A9" },
                   background: "#00599A",
                   color: "black",
                   marginTop: "20px",
+                  "&:hover": { 
+                    background: "#3366A9", 
+                    transition: "background 0.3s" 
+                  },
+                  "&:hover .arrowIcon": {
+                    marginLeft: "5px", // Adjust the value as needed
+                    transition: "margin-left 0.3s",
+                  },
+                  "& .text": {
+                    marginRight: "40px", // Adjust the value as needed
+                    transition: "margin-right 0.3s",
+                  },
                 }}
               >
-                GET STARTED NOW <ArrowForwardIcon />
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <span className="text">GET STARTED NOW</span>
+      <ArrowForwardIcon className="arrowIcon" />
+    </div>
+                
               </Button>
-            </Zoom>
+            </Fade>
           </div>
         </Fade>
       </Box>
+
+      <div className="demo-carousel">
+        <DemoCarousel />
+      </div>
 
       <Footer fullWidth />
     </div>

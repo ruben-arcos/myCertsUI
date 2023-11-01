@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard";
 import SignUp from "./components/SignUp";
 import CertificationHub from "./components/CertificationHub";
 import LandingPage from "./components/LandingPage";
+import ContactUs from "./components/ContactUs";
 
 const checkAuth = () => {
   const cookies = cookie.parse(document.cookie);
@@ -34,6 +35,10 @@ const Router = ({ user, setUser }) => {
       <Route
         path="/certificationhub"
         element={< ProtectedRoute component={CertificationHub} user={user} />}
+      />
+       <Route
+        path="/contact-us"
+        element={< ProtectedRoute component={ContactUs} user={user} />}
       />
     </Routes>
   );
