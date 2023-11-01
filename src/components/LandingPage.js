@@ -44,15 +44,15 @@ class DemoCarousel extends React.Component {
     return (
       <Carousel showThumbs={false} statusFormatter={customStatusFormatter} autoPlay={true} interval={3000} infiniteLoop={true}>
         <div>
-          <img src="./resources/easyStorage.png" alt="Image 1" style={imgStyle} />
+          <img src="./resources/easyStorage.png" alt="woman in white shirt using smartphone" style={imgStyle} />
           <p className="legend">Easy to store</p>
         </div>
         <div>
-          <img src="./resources/mobileSafe.png" alt="Image 2" style={imgStyle} />
+          <img src="./resources/mobileSafe.png" alt="iphone beside brown framed eyeglasses" style={imgStyle} />
           <p className="legend">Safe</p>
         </div>
         <div>
-          <img src="./resources/availableEverywhere.png" alt="Image 3" style={imgStyle} />
+          <img src="./resources/availableEverywhere.png" alt="person holding smartphone " style={imgStyle} />
           <p className="legend">Your documents are available everywhere</p>
         </div>
       </Carousel>
