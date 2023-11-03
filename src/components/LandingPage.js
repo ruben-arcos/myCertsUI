@@ -21,7 +21,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
-import { Fade } from "react-reveal";
+
 
 const pages = [
   { name: "Contact", to: "/#" },
@@ -226,7 +226,6 @@ export default function ResponsiveAppBar() {
       {/* content starts here */}
 
       <Box className="mainLandingPageContainer">
-        <Fade top distance="20%" duration="1500">
           <div className="mainTitle" style={{ textAlign: "center" }}>
             <h1
               style={{
@@ -244,8 +243,6 @@ export default function ResponsiveAppBar() {
             >
               Tired of scrambling to find your certificates, licenses, or resume every time you apply for a job? <br /> Welcome to mycerts – Your Career's New Best Friend!
             </span>
-
-            <Fade top duration="1000">
               <Button
                 component={Link}
                 to="/signup"
@@ -273,11 +270,8 @@ export default function ResponsiveAppBar() {
       <span className="text">GET STARTED NOW</span>
       <ArrowForwardIcon className="arrowIcon" />
     </div>
-                
               </Button>
-            </Fade>
           </div>
-        </Fade>
       </Box>
 
       <div className="demo-carousel">
