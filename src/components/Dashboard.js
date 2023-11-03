@@ -9,6 +9,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router";
@@ -115,8 +116,15 @@ export default function Dashboard({user}) {
             <TextField type="file" id="image" onChange={handleImageChange} />
           </Box>
           <Divider></Divider>
-          <Box>
-            <h2>drop image here</h2>
+          <Box sx={{
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center'
+}}
+>
+            <FileUploadIcon/>
+            <h2>drop image here to upload</h2>
           </Box>
         </Box>
       </Box>

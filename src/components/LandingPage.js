@@ -228,25 +228,21 @@ export default function ResponsiveAppBar() {
       <Box className="mainLandingPageContainer">
         <Fade top distance="20%" duration="1500">
           <div className="mainTitle" style={{ textAlign: "center" }}>
-            <p
+            <h1
               style={{
                 color: "#fff",
                 fontWeight: "bold",
                 fontSize: "24px",
               }}
             >
-              Found that perfect job and want to apply right away? <br />
-              Securely store your certifications, licenses or resume on mycerts{" "}
-            </p>
+              Found that perfect job and want to apply right away?
+            </h1>
             <span
               style={{
                 color: "#fff",
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Tired of scrambling to find your certificates, licenses, or resume every time you apply for a job? <br /> Welcome to mycerts – Your Career's New Best Friend!
             </span>
 
             <Fade top duration="1000">
