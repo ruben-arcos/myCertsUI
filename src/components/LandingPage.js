@@ -17,11 +17,10 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+import { Carousel } from "react-responsive-carousel";
 
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
-
 
 const pages = [
   { name: "Contact", to: "/#" },
@@ -30,43 +29,52 @@ const pages = [
   { name: "Login", to: "/login" },
 ];
 
-
 class DemoCarousel extends React.Component {
   render() {
     const imgStyle = {
       width: "700px",
       height: "auto",
-      margin: 20, 
+      margin: 20,
     };
 
     const customStatusFormatter = (current, total) => null;
 
     return (
-      <Carousel showThumbs={false} statusFormatter={customStatusFormatter} autoPlay={true} interval={3000} infiniteLoop={true}>
+      <Carousel
+        showThumbs={false}
+        statusFormatter={customStatusFormatter}
+        autoPlay={true}
+        interval={3000}
+        infiniteLoop={true}
+      >
         <div>
-          <img src="./resources/easyStorage.png" alt="woman in white shirt using smartphone" style={imgStyle} />
+          <img
+            src="./resources/easyStorage.png"
+            alt="woman in white shirt using smartphone"
+            style={imgStyle}
+          />
           <p className="legend">Easy to store</p>
         </div>
         <div>
-          <img src="./resources/mobileSafe.png" alt="iphone beside brown framed eyeglasses" style={imgStyle} />
+          <img
+            src="./resources/mobileSafe.png"
+            alt="iphone beside brown framed eyeglasses"
+            style={imgStyle}
+          />
           <p className="legend">Safe</p>
         </div>
         <div>
-          <img src="./resources/availableEverywhere.png" alt="person holding smartphone " style={imgStyle} />
+          <img
+            src="./resources/availableEverywhere.png"
+            alt="person holding smartphone "
+            style={imgStyle}
+          />
           <p className="legend">Your documents are available everywhere</p>
         </div>
       </Carousel>
     );
   }
 }
-
-
-
-
-
-
-
-
 
 export default function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -226,54 +234,64 @@ export default function ResponsiveAppBar() {
       {/* content starts here */}
 
       <Box className="mainLandingPageContainer">
-          <div className="mainTitle" style={{ textAlign: "center" }}>
-            <h1
+        <div className="mainTitle" style={{ textAlign: "center" }}>
+          <h1
+            style={{
+              color: "#fff",
+              fontWeight: "bold",
+              fontSize: "24px",
+            }}
+          >
+            Found that perfect job and want to apply right away?
+          </h1>
+          <span
+            style={{
+              color: "#fff",
+            }}
+          >
+            Tired of scrambling to find your certificates, licenses, or resume
+            every time you apply for a job? <br /> Welcome to mycerts – Your
+            Career's New Best Friend!
+          </span>
+          <div>
+          <Button
+            component={Link}
+            to="/signup"
+            size="large"
+            variant="outlined"
+            sx={{
+              background: "#00599A",
+              color: "black",
+              marginTop: "20px",
+              "&:hover": {
+                background: "#3366A9",
+                transition: "background 0.3s",
+              },
+              "&:hover .arrowIcon": {
+                marginLeft: "5px", // Adjust the value as needed
+                transition: "margin-left 0.3s",
+              },
+              "& .text": {
+                marginRight: "40px", // Adjust the value as needed
+                transition: "margin-right 0.3s",
+              },
+            }}
+          >
+            <div
               style={{
-                color: "#fff",
-                fontWeight: "bold",
-                fontSize: "24px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              Found that perfect job and want to apply right away?
-            </h1>
-            <span
-              style={{
-                color: "#fff",
-              }}
-            >
-              Tired of scrambling to find your certificates, licenses, or resume every time you apply for a job? <br /> Welcome to mycerts – Your Career's New Best Friend!
-            </span>
-              <Button
-                component={Link}
-                to="/signup"
-                size="large"
-                variant="outlined"
-                sx={{
-                  background: "#00599A",
-                  color: "black",
-                  marginTop: "20px",
-                  "&:hover": { 
-                    background: "#3366A9", 
-                    transition: "background 0.3s" 
-                  },
-                  "&:hover .arrowIcon": {
-                    marginLeft: "5px", // Adjust the value as needed
-                    transition: "margin-left 0.3s",
-                  },
-                  "& .text": {
-                    marginRight: "40px", // Adjust the value as needed
-                    transition: "margin-right 0.3s",
-                  },
-                }}
-              >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <span className="text">GET STARTED NOW</span>
-      <ArrowForwardIcon className="arrowIcon" />
-    </div>
-              </Button>
+              <span className="text">GET STARTED NOW</span>
+              <ArrowForwardIcon className="arrowIcon" />
+              
+            </div>
+          </Button>
           </div>
+        </div>
       </Box>
-
       <div className="demo-carousel">
         <DemoCarousel />
       </div>
