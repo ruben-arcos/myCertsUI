@@ -36,10 +36,7 @@ const Router = ({ user, setUser }) => {
         path="/certificationhub"
         element={< ProtectedRoute component={CertificationHub} user={user} />}
       />
-       <Route
-        path="/contact-us"
-        element={< ProtectedRoute component={ContactUs} user={user} />}
-      />
+       <Route path="/contact-us" element={< ContactUs/>}/>
     </Routes>
   );
 };

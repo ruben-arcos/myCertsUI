@@ -5,12 +5,15 @@ import {
   Box,
   Button,
   Container,
+  Fade,
   IconButton,
   Menu,
   MenuItem,
+  Slide,
   Toolbar,
   Tooltip,
   Typography,
+  Zoom,
 } from "@mui/material";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -34,7 +37,11 @@ class DemoCarousel extends React.Component {
     const imgStyle = {
       width: "700px",
       height: "auto",
-      margin: 20,
+      margin: 50,
+    };
+
+    const imageText = {
+      fontSize: "24px", // Adjust the font size as needed
     };
 
     const customStatusFormatter = (current, total) => null;
@@ -44,7 +51,7 @@ class DemoCarousel extends React.Component {
         showThumbs={false}
         statusFormatter={customStatusFormatter}
         autoPlay={true}
-        interval={3000}
+        interval={5000}
         infiniteLoop={true}
       >
         <div>
@@ -53,7 +60,7 @@ class DemoCarousel extends React.Component {
             alt="woman in white shirt using smartphone"
             style={imgStyle}
           />
-          <p className="legend">Easy to store</p>
+          <p className="legend" style={imageText}>🚀 Instant Access</p>
         </div>
         <div>
           <img
@@ -61,7 +68,7 @@ class DemoCarousel extends React.Component {
             alt="iphone beside brown framed eyeglasses"
             style={imgStyle}
           />
-          <p className="legend">Safe</p>
+          <p className="legend" style={imageText}>🔐 Secure Storage</p>
         </div>
         <div>
           <img
@@ -69,7 +76,10 @@ class DemoCarousel extends React.Component {
             alt="person holding smartphone "
             style={imgStyle}
           />
-          <p className="legend">Your documents are available everywhere</p>
+          <p className="legend" style={imageText}>
+            💼 Streamlined Applications <br/>Say goodbye to the hassle of document
+            hunting.
+          </p>
         </div>
       </Carousel>
     );
@@ -234,67 +244,72 @@ export default function ResponsiveAppBar() {
       {/* content starts here */}
 
       <Box className="mainLandingPageContainer">
-        <div className="mainTitle" style={{ textAlign: "center" }}>
-          <h1
-            style={{
-              color: "#fff",
-              fontWeight: "bold",
-              fontSize: "24px",
-            }}
-          >
-            Found that perfect job and want to apply right away?
-          </h1>
-          <span
-            style={{
-              color: "#fff",
-            }}
-          >
-            Tired of scrambling to find your certificates, licenses, or resume
-            every time you apply for a job? <br /> Welcome to mycerts – Your
-            Career's New Best Friend!
-          </span>
-          <div>
-          <Button
-            component={Link}
-            to="/signup"
-            size="large"
-            variant="outlined"
-            sx={{
-              background: "#00599A",
-              color: "black",
-              marginTop: "20px",
-              "&:hover": {
-                background: "#3366A9",
-                transition: "background 0.3s",
-              },
-              "&:hover .arrowIcon": {
-                marginLeft: "5px", // Adjust the value as needed
-                transition: "margin-left 0.3s",
-              },
-              "& .text": {
-                marginRight: "40px", // Adjust the value as needed
-                transition: "margin-right 0.3s",
-              },
-            }}
-          >
-            <div
+        {/* <Slide direction="down" in={true} timeout={4000}> */}
+        <Fade in={true} timeout={5000}>
+          <div className="mainTitle" style={{ textAlign: "center" }}>
+            <h1
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                color: "#fff",
+                fontWeight: "bold",
+                fontSize: "24px",
               }}
             >
-              <span className="text">GET STARTED NOW</span>
-              <ArrowForwardIcon className="arrowIcon" />
-              
+              Found that perfect job and want to apply right away?
+            </h1>
+            <span
+              style={{
+                color: "#fff",
+              }}
+            >
+              Tired of scrambling to find your certificates, licenses, or resume
+              every time you apply for a job? <br /> Welcome to mycerts – Your
+              Career's New Best Friend!
+            </span>
+            <div>
+              <Button
+                component={Link}
+                to="/signup"
+                size="large"
+                variant="outlined"
+                sx={{
+                  background: "#00599A",
+                  color: "black",
+                  marginTop: "20px",
+                  "&:hover": {
+                    background: "#3366A9",
+                    transition: "background 0.3s",
+                  },
+                  "&:hover .arrowIcon": {
+                    marginLeft: "5px", // Adjust the value as needed
+                    transition: "margin-left 0.3s",
+                  },
+                  "& .text": {
+                    marginRight: "40px", // Adjust the value as needed
+                    transition: "margin-right 0.3s",
+                  },
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <span className="text">GET STARTED NOW</span>
+                  <ArrowForwardIcon className="arrowIcon" />
+                </div>
+              </Button>
             </div>
-          </Button>
           </div>
-        </div>
+        </Fade>
+        {/* </Slide> */}
       </Box>
-      <div className="demo-carousel">
-        <DemoCarousel />
-      </div>
+      <Zoom in={true} timeout={2000}>
+        <div className="demo-carousel">
+          <DemoCarousel />
+        </div>
+      </Zoom>
 
       <Footer fullWidth />
     </div>
